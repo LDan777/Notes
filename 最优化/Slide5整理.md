@@ -52,6 +52,12 @@ $$\inf_{x \in X} \sup_{\lambda \geq 0, \nu} L(x, \lambda, \nu)$$
 
 $$v_d^* = \sup_{\lambda \geq 0, \nu} \theta(\lambda, \nu)$$
 
+> - 原问题 (P)：可以看作 $\inf_{x \in X} \sup_{\lambda \ge 0, \nu} L(x, \lambda, \nu)$ 
+>
+> - 对偶问题 (D)：可以看作 $\sup_{\lambda \ge 0, \nu} \inf_{x \in X} L(x, \lambda, \nu)$
+>
+> **极小极大与极大极小的交换**：通过交换 inf 和 sup 的顺序，我们将关注点从决策变量 $x$ 转移到了对偶变量（拉格朗日乘子） $λ$  和 $ν$  上。
+
 ### 3.2 弱对偶定理 (Weak Duality Theorem)
 
 对于任何可行解，对偶问题的最优值总是小于或等于原问题的最优值：
