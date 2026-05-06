@@ -1,4 +1,4 @@
-# 锥规划（Conic Programming）课堂笔记
+# 第 6 讲：锥规划（Conic Programming）课堂笔记
 
 ## 1. 基础理论：广义不等式与锥（Proper Cones）
 
