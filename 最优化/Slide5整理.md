@@ -193,3 +193,15 @@ $$K^* = \lbrace y \mid x^T y \geq 0, \forall x \in K \rbrace $$
 - **重点推导**：理解为什么原问题可以写成 $\inf\sup$ 而对偶是 $\sup\inf$
 - **核心工具**：掌握如何利用共轭函数 (Fenchel Dual) 求解对偶问题
 - **实践价值**：理解 SDP 松弛如何将难以处理的非凸二次约束转化为可计算的凸问题
+
+> 补：Schur 补引理 (Schur Complement)
+
+对于分块矩阵：
+
+$$ M = \begin{pmatrix} A & B \\ B^T & C \end{pmatrix} \succeq 0 $$
+
+假设 $A \succ 0$，其等价形式为：
+
+
+$$ C - B^T A^{-1} B \succeq 0 $$
+
