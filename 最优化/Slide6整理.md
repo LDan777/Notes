@@ -28,14 +28,14 @@
 
 对偶锥 $K^*$ 的定义为：
 
-$$K^* = \{y \mid x^T y \ge 0, \forall x \in K\}$$
+$$K^* = \lbrace y \mid x^T y \ge 0, \forall x \in K\rbrace $$
 
 如果 $K$ 是正常锥，则 $K^*$ 也是正常锥。
 
 **自对偶锥 (Self-dual Cones) 示例**：
 
 1. **非负象限 (Non-negative Orthant)**： $\mathbb{R}_+^n$
-2. **洛伦兹锥 (Lorentz/Second-Order Cone)**： $\mathcal{Q} = \{(t, x) : t \ge \|x\|_2\}$
+2. **洛伦兹锥 (Lorentz/Second-Order Cone)**： $\mathcal{Q} = \lbrace (t, x) : t \ge \|x\|_2 \rbrace$
 3. **正定锥 (Positive Semidefinite Cone)**： $S_+^n$
 
 ### 2.2 广义不等式的拉格朗日对偶
@@ -101,7 +101,7 @@ CLP 是线性规划（LP）的直接推广，将非负约束 $x \ge 0$ 替换为
 
 ### 5.2 步长选择策略
 
-1. **恒定步长**：$t_k = \alpha$
+1. **恒定步长**： $t_k = \alpha$
 2. **精确线搜索 (Exact Line Search)**：寻找使沿方向函数值最小的 $t$
 3. **回溯线搜索 (Backtracking Line Search)**：最实用。从一个大步长开始，如果不满足下降准则（如 Armijo 条件），则不断缩减步长（乘上 $\beta < 1$ ）
 
