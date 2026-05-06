@@ -140,9 +140,26 @@ $$\max -\frac{1}{4} \lambda^T A P^{-1} A^T \lambda - b^T \lambda \quad \text{s.t
 
 **意义**：SDP 松弛可以为复杂的非凸问题提供高质量的下界估计。
 
+> **半定规划 (SDP)**
+> SDP 的研究对象不再是简单的变量向量，而是对称矩阵。其标准形式通常如下：
+>
+$$\begin{aligned}
+\min \quad & C \bullet Z \\
+\text{s.t.} \quad & A_j \bullet Z = b_j, \quad j=1, \dots, m \\
+& Z \in \mathcal{S}_+^n
+\end{aligned}$$ 
+> - 决策变量 Z：是一个 n×n 的对称矩阵 。
+> - 线性目标与约束：符号 ∙ 表示矩阵内积（即 $\text{Tr}(C^T Z)$ ），意味着目标函数和约束条件对矩阵 Z 的元素而言都是线性的 。
+> - 半正定约束 (Z⪰0)：要求 Z 属于半正定锥 ( $\mathcal{S}_+^n$ )，即对所有非零向量 v， $v^T Z v \ge 0$ 。
 ---
 
 ## 7. 进阶内容：广义不等式与锥规划 (Cone Programming)
+### 7.0 锥定义
+一个集合 $K \subseteq \mathbb{R}^n$ 被称为锥，是指对于集合中的任意元素 x 以及任意非负标量 α≥0，都有：
+
+$$\alpha x \in K$$
+
+这意味着：如果你在锥里找到一个点，那么从原点经过这个点并无限延伸的射线都在这个锥里 。
 
 ### 7.1 正常锥 (Proper Cone)
 
@@ -153,15 +170,15 @@ $$\max -\frac{1}{4} \lambda^T A P^{-1} A^T \lambda - b^T \lambda \quad \text{s.t
 - **尖**（不包含直线）(Pointed)
 
 **常见锥**：
-- 非负象限 $\mathbb{R}_+^n$
-- 二阶锥 (SOC / Second-Order Cone)
-- 半正定锥 (SDP Cone $\mathbb{S}_+^n$ )
+- 非负象限: $\mathbb{R}_+^n$ 
+- 二阶锥 (SOC / Second-Order Cone)： $K = \lbrace (x, t) \mid \|x\|_2 \le t \rbrace $
+- 半正定锥 (SDP Cone $\mathbb{S}_+^n$ ) ： 即所有特征值 ≥0 的对称矩阵集合
 
 ### 7.2 对偶锥 (Dual Cone)
 
 定义为
 
-$$K^* = \{ y \mid x^T y \geq 0, \forall x \in K \}$$
+$$K^* = \lbrace y \mid x^T y \geq 0, \forall x \in K \rbrace $$
 
 **自对偶性**：上述三个常用锥均为自对偶锥，即 $K = K^*$ 。
 
