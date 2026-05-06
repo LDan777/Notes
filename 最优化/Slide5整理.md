@@ -11,9 +11,9 @@ $$\begin{aligned}
 & x \in X
 \end{aligned}$$
 
-- **决策变量**：$x \in \mathbb{R}^n$
-- **约束条件**：$g_i(x)$ 为不等式约束，$h_j(x)$ 为等式约束
-- **乘子 (Multipliers)**：$\lambda_i$ 对应不等式约束（需满足 $\lambda_i \geq 0$），$\nu_j$ 对应等式约束
+- **决策变量**： $x \in \mathbb{R}^n$
+- **约束条件**： $g_i(x)$ 为不等式约束，$h_j(x)$ 为等式约束
+- **乘子 (Multipliers)**： $\lambda_i$ 对应不等式约束（需满足 $\lambda_i \geq 0$），$\nu_j$ 对应等式约束
 - **集合 $X$**：一个任意的非空子集，通常包含一些容易处理的约束
 
 ---
@@ -32,7 +32,7 @@ $$L(x, \lambda, \nu) = f(x) + \sum_{i=1}^{m} \lambda_i g_i(x) + \sum_{j=1}^{p} \
 
 $$\theta(\lambda, \nu) = \inf_{x \in X} L(x, \lambda, \nu)$$
 
-> **补充知识**：即使原问题是非凸的，对偶函数 $\theta(\lambda, \nu)$ **始终是一个凹函数**。这是因为它是关于 $(\lambda, \nu)$ 的一系列仿射函数的逐点下确界。
+> **补充知识**：即使原问题是非凸的，对偶函数 $\theta(\lambda, \nu)$  **始终是一个凹函数**。这是因为它是关于 $(\lambda, \nu)$ 的一系列仿射函数的逐点下确界。
 
 ### 2.3 原问题的极小极大描述
 
@@ -60,7 +60,7 @@ $$\theta(\bar{\lambda}, \bar{\nu}) \leq f(\bar{x})$$
 
 **含义**：对偶问题为原问题提供了一个**下界 (Lower Bound)**。
 
-- **对偶间隔 (Duality Gap)**：$v_p^* - v_d^*$ 的值。如果大于 0，则存在对偶间隔。
+- **对偶间隔 (Duality Gap)**： $v_p^* - v_d^*$ 的值。如果大于 0，则存在对偶间隔。
 
 ---
 
@@ -71,11 +71,11 @@ $$\theta(\bar{\lambda}, \bar{\nu}) \leq f(\bar{x})$$
 三元组 $(\bar{x}, \bar{\lambda}, \bar{\nu})$ 被称为**鞍点**，需满足：
 
 - $\bar{x} \in X$ 且 $\bar{\lambda} \geq 0$
-- 对于所有 $x, \lambda, \nu$：
+- 对于所有 $x, \lambda, \nu$ ：
 
 $$L(\bar{x}, \lambda, \nu) \leq L(\bar{x}, \bar{\lambda}, \bar{\nu}) \leq L(x, \bar{\lambda}, \bar{\nu})$$
 
-**即**：在给定乘子时，$\bar{x}$ 极小化 $L$；在给定 $\bar{x}$ 时，乘子极大化 $L$。
+**即**：在给定乘子时， $\bar{x}$ 极小化 $L$ ；在给定 $\bar{x}$ 时，乘子极大化 $L$ 。
 
 ### 4.2 鞍点与强对偶的等价性
 
@@ -85,9 +85,9 @@ $$L(\bar{x}, \lambda, \nu) \leq L(\bar{x}, \bar{\lambda}, \bar{\nu}) \leq L(x, \
 
 一个点是鞍点的充要条件包括：
 
-1. **原问题可行性**：$\bar{x} \in X, G(\bar{x}) \leq 0, H(\bar{x}) = 0$
-2. **拉格朗日最优性**：$\bar{x} = \arg\min_{x \in X} L(x, \bar{\lambda}, \bar{\nu})$
-3. **互补松弛性 (Complementarity)**：$\bar{\lambda}^T G(\bar{x}) = 0$
+1. **原问题可行性**： $\bar{x} \in X, G(\bar{x}) \leq 0, H(\bar{x}) = 0$
+2. **拉格朗日最优性**： $\bar{x} = \arg\min_{x \in X} L(x, \bar{\lambda}, \bar{\nu})$
+3. **互补松弛性 (Complementarity)**： $\bar{\lambda}^T G(\bar{x}) = 0$
 
 ---
 
@@ -98,7 +98,7 @@ $$L(\bar{x}, \lambda, \nu) \leq L(\bar{x}, \bar{\lambda}, \bar{\nu}) \leq L(x, \
 **前提条件**：
 - $f, g_i$ 是**凸函数**
 - $h_j$ 是**仿射函数**
-- 满足 **Slater 条件**（存在一个点使得所有不等式约束严格成立，即 $g_i(x) < 0$）
+- 满足 **Slater 条件**（存在一个点使得所有不等式约束严格成立，即 $g_i(x) < 0$ ）
 
 **结论**：原问题最优值等于对偶问题最优值
 
@@ -120,7 +120,7 @@ $$\max -b^T \nu \quad \text{s.t.} \quad A^T \nu + c \geq 0$$
 
 ### 6.2 二次规划 (QP) 的对偶
 
-对于 $\min x^T P x \quad \text{s.t.} \quad Ax \leq b$，其对偶形式通常涉及 $P^{-1}$：
+对于 $\min x^T P x \quad \text{s.t.} \quad Ax \leq b$ ，其对偶形式通常涉及 $P^{-1}$ ：
 
 $$\max -\frac{1}{4} \lambda^T A P^{-1} A^T \lambda - b^T \lambda \quad \text{s.t.} \quad \lambda \geq 0$$
 
@@ -129,7 +129,7 @@ $$\max -\frac{1}{4} \lambda^T A P^{-1} A^T \lambda - b^T \lambda \quad \text{s.t
 针对非凸的 QCQP：
 
 1. 利用恒等式 $x^T A x = \text{Tr}(A \cdot xx^T)$ 将变量升维
-2. 令 $X = xx^T$，则约束变为 $X \succeq 0$ 且 $\text{rank}(X) = 1$
+2. 令 $X = xx^T$ ，则约束变为 $X \succeq 0$ 且 $\text{rank}(X) = 1$
 3. **松弛策略**：去掉非凸的"秩为 1"约束，得到一个凸的 SDP 问题
 
 **意义**：SDP 松弛可以为复杂的非凸问题提供高质量的下界估计。
@@ -149,7 +149,7 @@ $$\max -\frac{1}{4} \lambda^T A P^{-1} A^T \lambda - b^T \lambda \quad \text{s.t
 **常见锥**：
 - 非负象限 $\mathbb{R}_+^n$
 - 二阶锥 (SOC / Second-Order Cone)
-- 半正定锥 (SDP Cone $\mathbb{S}_+^n$)
+- 半正定锥 (SDP Cone $\mathbb{S}_+^n$ )
 
 ### 7.2 对偶锥 (Dual Cone)
 
@@ -157,11 +157,11 @@ $$\max -\frac{1}{4} \lambda^T A P^{-1} A^T \lambda - b^T \lambda \quad \text{s.t
 
 $$K^* = \{ y \mid x^T y \geq 0, \forall x \in K \}$$
 
-**自对偶性**：上述三个常用锥均为自对偶锥，即 $K = K^*$。
+**自对偶性**：上述三个常用锥均为自对偶锥，即 $K = K^*$ 。
 
 ### 7.3 锥规划的对偶
 
-在广义不等式 $g_i(x) \leq_{K_i} 0$ 下，拉格朗日乘子 $\lambda_i$ 必须属于对应的对偶锥 $K_i^*$。**弱对偶定理**在广义不等式下依然成立。
+在广义不等式 $g_i(x) \leq_{K_i} 0$ 下，拉格朗日乘子 $\lambda_i$ 必须属于对应的对偶锥 $K_i^*$ 。**弱对偶定理**在广义不等式下依然成立。
 
 ---
 
