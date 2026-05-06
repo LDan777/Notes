@@ -1,5 +1,23 @@
 # 第 6 讲：锥优化 (Conic Programming) 与算法基础
 
+<sub style="font-size: 0.5em;">
+
+* [1. 广义不等式与锥](#1-广义不等式与锥-generalized-inequalities--cones)
+
+  
+* [2. 对偶锥与对偶问题](#2-对偶锥与对偶问题-dual-cones--duality)
+
+  
+* [3. 锥线性规划](#3-锥线性规划-conic-linear-programming-clp)
+
+  
+* [4. 鲁棒优化](#4-鲁棒优化-robust-optimization)
+
+  
+* [5. 梯度法基础](#5-梯度法基础-gradient-methods)
+
+</sub>
+
 ## 1. 广义不等式与锥 (Generalized Inequalities & Cones)
 
 ### 1.1 正常锥 (Proper Cone) 的定义
