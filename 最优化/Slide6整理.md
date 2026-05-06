@@ -63,6 +63,16 @@ $$K^* = \lbrace y \mid x^T y \ge 0, \forall x \in K\rbrace $$
 * **原问题**：约束为 $g_i(x) \le_{K_i} 0$
 * **对偶约束**：要求对偶变量 $\lambda_i \ge_{K_i^*} 0$
 * **性质**：弱对偶性总是成立；在满足 Slater 条件下，强对偶性通常对凸问题成立。
+  
+<details>
+  <summary style="color: #007BFF; cursor: pointer; font-weight: bold;">
+    什么是广义不等式约束？ (点击查看备注)
+  </summary>
+  <p style="background-color: #f8f9fa; padding: 12px; border-left: 6px solid #007BFF; border-radius: 4px;">
+    <b>备注：</b> 它是传统不等式的推广。不再是简单的“数”与“数”比大小，而是要求向量之差落在一个特定的“锥”空间内。
+    例如在 SDP 中，它要求矩阵必须是半正定的。
+  </p>
+</details>
 
 ---
 
