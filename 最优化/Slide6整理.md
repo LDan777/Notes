@@ -86,18 +86,131 @@ $$K^* = \lbrace y \mid x^T y \ge 0, \forall x \in K\rbrace $$
 
 CLP 是线性规划（LP）的直接推广，将非负约束 $x \ge 0$ 替换为锥约束 $x \ge_K 0$ 。
 
-### 3.1 二次规划的 SDP 松弛 (SDR)
+### 3.1 问题定义
+锥线性规划的标准型通常可以表述为：
+
+$$\begin{aligned}
+\inf \quad & c \bullet x \\
+\text{s.t.} \quad & a_i \bullet x = b_i, \quad i=1,\dots,m \\
+& x \ge_K 0
+\end{aligned}$$
+
+- 这里的 ∙ 代表内积运算 。  
+- $x \ge_K 0$ 表示向量 x 必须属于锥 K 。
+
+### 3.2 常见的 CLP 形式
+根据所选取的锥 K 不同，CLP 有几种极其重要的特殊形式：
+|锥类型 K|对应的优化问题名称|备注
+| :------- | :---------- | :----------------------------- |
+|非负象限 ( $\mathbb{R}_+^n$ ​)|线性规划 (LP)|最基础的形式，所有分量非负 。|
+|二阶锥/洛伦兹锥 ( $Q$ )|二阶锥规划 (SOCP)|约束形式通常为  $\|Ax + b\|_2 \le u^T x +d$ 。|
+|正定锥 ( $S_+^n$ ​)|半正定规划 (SDP)|变量是矩阵 X，要求 X 是半正定矩阵 。|
+
+### 3.3 对偶性质
+
+锥线性规划也具有对称的对偶问题形式 ：
+
+$$\begin{aligned}
+\sup \quad & b^T y \\
+\text{s.t.} \quad & \sum_{i=1}^{m} y_i a_i + s = c \\
+& y \in \mathbb{R}^m, \quad s \ge_{K^*} 0
+\end{aligned}$$
+
+- **对偶变量**： $s$ 必须属于原锥 $K$ 的对偶锥 $K^*$  。 
+
+- **弱对偶性**：对于任何原问题可行解 $x$ 和对偶问题可行解 (y,s)，总有 $b^T y \le c \bullet x$ 。  
+
+- **强对偶性**：与 LP 不同，CLP 的强对偶性通常需要严格可行性（Strict Feasibility，即满足 Slater 条件）来保证 $p^* = d^*$  。
+  
+### 3.4 二次规划的 SDP 松弛 (SDR)
 
 针对二次约束二次规划 (QCQP)，可以通过引入矩阵变量 $X = xx^T$ 将其转化为半正定规划 (SDP)。
 
 * **松弛方法**：丢弃 $\text{rank}(X)=1$ 的非凸约束，仅保留 $X \ge 0$
 * **紧致性 (Tightness)**：
   * 齐次情况下，若约束个数 $m \le 2$，松弛通常是紧的
+    * **秩与约束个数的关系**：理论证明，如果松弛后的 SDP 问题有最优解，那么一定存在一个最优解 $X^*$ ，其秩 r 满足不等式  $\frac{r(r+1)}{2} \le m$ ，其中 m 是约束条件的个数 。
   * 非齐次情况下，依据 S-lemma，若 $m \le 1$ 且满足 Slater 条件，则松弛是紧的
+    * **S-引理 (S-lemma)**：在非齐次二次规划中，如果满足以下两个条件，SDR 也是紧的 ：
+      1. 约束个数 m≤1 。
+      2. 满足 Slater 条件（即存在一个严格可行解） 。
 
-### 3.2 最大割问题 (Max-Cut Problem)
+### 3.5 最大割问题 (Max-Cut Problem)
 
 最大割问题可以等价写成二次优化形式，其 SDP 松弛是目前最经典的算法应用之一。
+
+#### 3.5.1 原问题：Max-Cut 问题
+##### 问题定义
+$$
+\begin{aligned}
+\max_{x \in \mathbb{R}^n} \quad & x^T C x \\
+\text{s.t.} \quad & x_i^2 = 1, \quad i=1,2,\dots,n
+\end{aligned}
+$$
+- 变量 $x_i \in \{\pm1\}$ ，代表图中顶点的二分划分（ $+1$ 和 $-1$ 分属两个集合）。
+- 矩阵 $C$ 通常为图的加权邻接矩阵， $x^T C x$ 是割边权重和的线性变换形式。
+
+
+
+#### 3.5.2 第一步：推导 Max-Cut 的对偶问题
+##### 1. 拉格朗日函数
+$$
+L(x,y) = -x^T C x + \sum_{i=1}^n y_i(x_i^2-1) = x^T(\text{Diag}(y)-C)x - \mathbf{1}^T y
+$$
+- $y_i$ 是约束 $x_i^2=1$ 对应的拉格朗日乘子。
+- 为了将最大化问题转为标准对偶形式，这里对目标函数取了负号。
+
+##### 2. 对偶函数
+$$
+g(y) = \inf_x L(x,y) =
+\begin{cases}
+-\mathbf{1}^T y, & \text{Diag}(y)-C \succeq 0 \\
+-\infty, & \text{otherwise}
+\end{cases}
+$$
+- 当 $\text{Diag}(y)-C \succeq 0$（半正定）时，二次型 $x^T(\text{Diag}(y)-C)x$ 的最小值为 $0$（取 $x=0$ 时），因此对偶函数值为 $-\mathbf{1}^T y$ 。
+- 若矩阵不定，可令 $x$ 沿负特征值方向趋于无穷，使 $L(x,y) \to -\infty$ 。
+
+##### 3. 对偶问题
+$$
+\begin{aligned}
+\min_{y \in \mathbb{R}^n} \quad & \mathbf{1}^T y \\
+\text{s.t.} \quad & \text{Diag}(y)-C \succeq 0
+\end{aligned}
+$$
+- 这是一个**半定规划（SDP）问题**，也是 Max-Cut 的线性松弛对偶。
+
+
+#### 3.5.3第二步：对偶问题的对偶（Max-Cut 的 SDP 松弛）
+##### 1. 对偶问题的拉格朗日函数
+$$
+L(y,X) = \mathbf{1}^T y - \langle \text{Diag}(y)-C, X \rangle = \sum_{i=1}^n (1-X_{ii})y_i + \langle C, X \rangle
+$$
+- $X$ 是半定约束对应的拉格朗日乘子矩阵， $\langle A,B\rangle = \text{tr}(A^T B)$ 为矩阵内积。
+
+##### 2. 对偶函数
+$$
+g(X) = \inf_y L(y,X) =
+\begin{cases}
+\langle C, X \rangle, & X_{ii}=1,\ i=1,\dots,n \\
+-\infty, & \text{otherwise}
+\end{cases}
+$$
+- 当 $X_{ii}=1$ 时， $y_i$ 的系数为 $0$ ，对偶函数值为常数 $\langle C, X \rangle$ 。
+- 若 $X_{ii} \neq 1$，则可令对应的 $y_i$ 趋于无穷或负无穷，使 $L(y,X) \to -\infty$ 。
+
+##### 3. 对偶问题（即 Max-Cut 的 SDP 松弛）
+$$
+\begin{aligned}
+\max \quad & \langle C, X \rangle \\
+\text{s.t.} \quad & X_{ii}=1, \quad i=1,2,\dots,n \\
+& X \succeq 0
+\end{aligned}
+$$
+- 这就是著名的**Max-Cut 半定松弛（SDR）**，去掉了原问题中 $X=xx^T$ 的秩-1约束，仅保留半正定和对角元为1的条件。
+- 该松弛是 Max-Cut 问题最经典的近似算法，能保证得到最优值至少 $0.878$ 倍的近似解。
+
+
 
 ---
 
