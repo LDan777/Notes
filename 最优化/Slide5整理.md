@@ -12,8 +12,8 @@ $$\begin{aligned}
 \end{aligned}$$
 
 - **决策变量**： $x \in \mathbb{R}^n$
-- **约束条件**： $g_i(x)$ 为不等式约束，$h_j(x)$ 为等式约束
-- **乘子 (Multipliers)**： $\lambda_i$ 对应不等式约束（需满足 $\lambda_i \geq 0$），$\nu_j$ 对应等式约束
+- **约束条件**： $g_i(x)$ 为不等式约束， $h_j(x)$ 为等式约束
+- **乘子 (Multipliers)**： $\lambda_i$ 对应不等式约束（需满足 $\lambda_i \geq 0$）， $\nu_j$ 对应等式约束
 - **集合 $X$**：一个任意的非空子集，通常包含一些容易处理的约束
 
 ---
