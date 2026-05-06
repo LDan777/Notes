@@ -71,6 +71,12 @@ $$K^* = \lbrace y \mid x^T y \ge 0, \forall x \in K\rbrace $$
   <p style="background-color: #f8f9fa; padding: 12px; border-left: 6px solid #007BFF; border-radius: 4px;">
     <b>备注：</b> 它是传统不等式的推广。不再是简单的“数”与“数”比大小，而是要求向量之差落在一个特定的“锥”空间内。
     例如在 SDP 中，它要求矩阵必须是半正定的。
+
+    基于锥的定义：广义不等式是利用 正常锥 (Proper Cone) K 来定义的 。  
+
+    数学表示：对于两个向量 x,y，广义不等式  $x \le_K y$ 等价于 $y - x \in K$ 。  
+    
+    约束形式：在一个优化问题中，广义不等式约束通常写作 $g_i(x) \le_{K_i} 0$ ，这意味着函数值 $g_i(x)$ 必须落在锥 $-K_i$ 中 。
   </p>
 </details>
 
