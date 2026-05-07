@@ -135,6 +135,21 @@ $$\begin{aligned}
       1. 约束个数 m≤1 。
       2. 满足 Slater 条件（即存在一个严格可行解） 。
 
+* S-引理 (S-lemma)：
+
+  **数学定义**：
+
+   假设有两个二次函数 $f_0(x)$ 和 $f_1(x)$ 。S-lemma 探讨的是如下命题的等价性：
+
+  命题 A：只要 $f_1(x) \le 0$，就一定有 $f_0(x) \le 0$ 。
+
+  命题 B：存在一个非负常数 $\lambda \ge 0$，使得对于所有的 $x$，都有 $f_0(x) \le \lambda f_1(x)$ 。
+
+  在矩阵形式下，这通常表示为：如果 $f_i(x) = x^T A_i x + 2b_i^T x + c_i$，则上述命题等价于存在 $\lambda \ge 0$ 满足如下 线性矩阵不等式 (LMI) ：
+
+  <img width="624" height="204" alt="image" src="https://github.com/user-attachments/assets/4d8b4636-4fd5-45c7-8ae9-c1bfa74d4d0b" />
+
+
 ### 3.5 最大割问题 (Max-Cut Problem)
 
 最大割问题可以等价写成二次优化形式，其 SDP 松弛是目前最经典的算法应用之一。
@@ -210,6 +225,8 @@ $$
 - 这就是著名的**Max-Cut 半定松弛（SDR）**，去掉了原问题中 $X=xx^T$ 的秩-1约束，仅保留半正定和对角元为1的条件。
 - 该松弛是 Max-Cut 问题最经典的近似算法，能保证得到最优值至少 $0.878$ 倍的近似解。
 
+### 3.6 二阶锥规划（SOCP, Second-Order Cone Programming）
+
 
 
 ---
@@ -225,6 +242,14 @@ $$
 * **多面体集**：鲁棒对等式仍为线性规划 (LP)
 * **椭球集**：转化为二阶锥规划 (SOCP/CQP)
 * **常见的转化表**：课堂总结了不同集合对应的转化难度
+
+| 不确定集类型 | 定义 $\mathcal{Z}$ | 鲁棒等价形式 | 可处理类型 |
+| :--- | :--- | :--- | :--- |
+| **盒型（Box）** | $\|\zeta\|_\infty \le 1$ | $a^T x + \|P^T x\|_1 \le d$ | 线性规划（LP） |
+| **椭球型（Ellipsoidal）** | $\|\zeta\|_2 \le 1$ | $a^T x + \|P^T x\|_2 \le d$ | 二次约束规划（CQP/SOCP） |
+| **多面体（Polyhedral）** | $D\zeta + q \ge 0$ | $\begin{cases} a^T x + q^T w \le d \\ D^T w = -P^T x \\ w \ge 0 \end{cases}$ | 线性规划（LP） |
+| **锥型（Cone）** | $D\zeta + q \in K$（ $K$ 为闭凸尖锥） | $\begin{cases} a^T x + q^T w \le d \\ D^T w = -P^T x \\ w \in K^* \end{cases}$ | 锥优化（Conic Opt.） |
+| **凸约束（Convex cons.）** | $h_k(\zeta) \le 0,\ \forall k$ | $\begin{cases} a^T x + \sum_k u_k h_k^*(\frac{w^k}{u_k}) \le d \\ \sum_k w^k = P^T x \\ u \ge 0 \end{cases}$ | 凸优化（Convex Opt.） |
 
 ### 4.2 机会约束 (Chance Constraints) 的安全近似
 
